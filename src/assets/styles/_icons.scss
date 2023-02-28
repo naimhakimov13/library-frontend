@@ -1,0 +1,48 @@
+@import "variables";
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background: $black;
+
+  &-home {
+    -webkit-mask: url("@/assets/svg/home.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/home.svg") no-repeat 50% 50%;
+  }
+
+  &-book {
+    -webkit-mask: url("@/assets/svg/book.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/book.svg") no-repeat 50% 50%;
+  }
+
+  &-users {
+    -webkit-mask: url("@/assets/svg/users.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/users.svg") no-repeat 50% 50%;
+  }
+  &-category {
+    -webkit-mask: url("@/assets/svg/category.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/category.svg") no-repeat 50% 50%;
+  }
+
+  &-trash {
+    -webkit-mask: url("@/assets/svg/trash.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/trash.svg") no-repeat 50% 50%;
+  }
+
+  &-trash {
+    -webkit-mask: url("@/assets/svg/trash.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/trash.svg") no-repeat 50% 50%;
+  }
+
+  &-edit {
+    -webkit-mask: url("@/assets/svg/edit.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/edit.svg") no-repeat 50% 50%;
+  }
+}

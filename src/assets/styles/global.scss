@@ -1,0 +1,51 @@
+@import "variables";
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: $black;
+}
+
+:root {
+  --vs-dropdown-option--active-bg: #3FB984;
+}
+
+.page {
+  padding: 20px;
+
+  &__title {
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: bold;
+  }
+}
+
+.vs__dropdown-toggle {
+  border-radius: 8px;
+  border: 1px solid $gray-400;
+  height: 42px;
+
+  .vs__selected {
+    font-size: 14px;
+    line-height: 20px;
+    color: $black;
+  }
+}
+
+.vs__dropdown-menu {
+  border-radius: 0 0 8px 8px;
+  padding: 0;
+}
+
+.flex{
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}

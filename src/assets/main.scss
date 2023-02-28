@@ -1,0 +1,13 @@
+@import "styles/global";
+@import "styles/icons";
+@import "styles/variables";
+
+.Vue-Toastification__toast {
+  path {
+    color: white;
+  }
+}
+
+.Vue-Toastification__toast-body {
+  color: white;
+}
