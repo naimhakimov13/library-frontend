@@ -1,8 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Login from "@/views/Login.vue"
-import ne from "vue-select";
-import re from "vue-select";
-import de from "vue-select";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,6 +66,9 @@ const router = createRouter({
           component: () => import('@/views/Books/CreateBook.vue'),
         }
       ]
+    },
+    {
+      path: "/:catchAll(.*)",  redirect: '/dashboard'
     },
   ]
 })
