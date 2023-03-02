@@ -13,10 +13,15 @@ var options = {
   maxAge: '1m',
   redirect: false
 }
+
 app.use(express.static('dist', options))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/404.html'))
+})
 
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
-  console.log(`React app listening at http://localhost:${port}`)
+  console.log(`Vue app listening at http://localhost:${port}`)
 })
