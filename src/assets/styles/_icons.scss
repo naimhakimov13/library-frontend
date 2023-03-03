@@ -45,4 +45,20 @@
     -webkit-mask: url("@/assets/svg/edit.svg") no-repeat 50% 50%;
     mask: url("@/assets/svg/edit.svg") no-repeat 50% 50%;
   }
+
+  &-loading {
+    -webkit-mask: url("@/assets/svg/loading.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/loading.svg") no-repeat 50% 50%;
+    animation: loading .6s infinite;
+  }
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

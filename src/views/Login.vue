@@ -42,6 +42,7 @@ async function onSubmit() {
           v-model="form.remember"
           label="Запомный меня"/>
     </form>
+
     <base-button
         type="submit"
         color="primary"
