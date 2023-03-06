@@ -1,6 +1,7 @@
 import {defineStore} from "pinia/dist/pinia";
-import {getUsers, signIn} from "@/services/http.service";
+import {deleteUser, getUsers, signIn, signUp, updateUser} from "@/services/http.service";
 import {computed, ref} from "vue";
+import {toast} from "@/plugins/toast";
 
 export const useUserStore = defineStore('user', () => {
   const isLoading = ref(false)
@@ -42,8 +43,37 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  async function deleteUserById(id) {
+    try {
+      await deleteUser(id)
+      toast.success('Успешно удаленно')
+      users.value = users.value.filter(book => book._id !== id)
+    } catch (err) {
+      throw err
+    }
+  }
+
+  async function update(id, user) {
+    try {
+      user.user = await updateUser(id, user)
+      toast.success('Успешно обновлён')
+    } catch (e) {
+      throw e
+    }
+  }
+
+  async function create(user) {
+    try {
+      await signUp(user)
+      users.value = []
+      await get()
+    } catch (e) {
+      throw e
+    }
+  }
+
   return {
     isLoading, user, users, rows,
-    get, login
+    get, login, deleteUserById, update, create
   }
 })

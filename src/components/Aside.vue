@@ -21,6 +21,11 @@ const items = [
     link: '/books'
   }
 ]
+
+function logout() {
+  localStorage.clear()
+  window.location.reload()
+}
 </script>
 
 <template>
@@ -28,10 +33,16 @@ const items = [
     <ul class="aside-list">
       <li class="aside__item"
           v-for="item in items">
-        <router-link :to="item.link" class="flex gap-[20px] group-hover:bg-white">
-          <span :class="'icon-' + item.icon " class="icon group-hover:bg-white"></span>
+        <router-link :to="item.link" class="flex">
+          <span :class="'icon-' + item.icon " class="icon"></span>
           {{ item.name }}
         </router-link>
+      </li>
+      <li class="aside__item" @click="logout">
+        <a>
+          <span class="icon icon-logout"></span>
+          Выйти
+        </a>
       </li>
     </ul>
 
@@ -78,6 +89,7 @@ const items = [
       gap: 12px;
       color: $black;
       text-decoration: none;
+      cursor: pointer;
 
       &.router-link-active {
         color: $white;

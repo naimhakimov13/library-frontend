@@ -13,7 +13,7 @@ export const useBookStore = defineStore('books', () => {
     return books.value.map(item => ({
       cells: [
         item._id,
-        `<img src="${item.image ? ('http://localhost:3000/' + item.image) : '/src/assets/image/noimage.jpg'}"/>`,
+        `<img src="${item?.image?.url ? item.image.url : '/src/assets/image/noimage.jpg'}"/>`,
         item.barcode,
         item.title,
         item.author,

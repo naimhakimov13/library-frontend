@@ -51,6 +51,11 @@
     mask: url("@/assets/svg/loading.svg") no-repeat 50% 50%;
     animation: loading .6s infinite;
   }
+
+  &-logout {
+    -webkit-mask: url("@/assets/svg/logout.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/logout.svg") no-repeat 50% 50%;
+  }
 }
 
 @keyframes loading {

@@ -3,7 +3,9 @@
     <Aside/>
     <div class="main-views">
       <Header/>
-      <router-view/>
+      <div class="page">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>

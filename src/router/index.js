@@ -11,7 +11,7 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login,
-      meta: {layout: 'empty'},
+      meta: {layout: 'empty', auth: false},
     },
     {
       path: '/dashboard',
@@ -22,53 +22,56 @@ const router = createRouter({
     {
       path: '/users',
       name: 'users',
-      component: () => import('@/views/Users.vue'),
+      component: () => import('@/views/Users/index.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/users/create',
+      name: 'create',
+      component: () => import('@/views/Users/CreateUser.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/users/edit/:id',
+      name: 'edit',
+      component: () => import('@/views/Users/CreateUser.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
       path: '/category',
-      name: 'category',
       component: () => import('@/views/Category/index.vue'),
       meta: {layout: 'main', auth: true},
-      children: [
-        {
-          path: '',
-          component: () => import('@/views/Category/CategoryList.vue'),
-        },
-        {
-          path: 'create',
-          component: () => import('@/views/Category/CreateCategory.vue'),
-        },
-        {
-          path: 'edit/:id',
-          component: () => import('@/views/Category/CreateCategory.vue'),
-        }
-      ]
+    },
+    {
+      path: '/category/create',
+      component: () => import('@/views/Category/CreateCategory.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/category/edit/:id',
+      component: () => import('@/views/Category/CreateCategory.vue'),
+      meta: {layout: 'main', auth: true},
     },
     {
       path: '/books',
       name: 'books',
       component: () => import('@/views/Books/index.vue'),
       meta: {layout: 'main', auth: true},
-      children: [
-        {
-          path: '',
-          component: () => import('@/views/Books/BookList.vue'),
-        },
-        {
-          path: 'create',
-          name: 'create-book',
-          component: () => import('@/views/Books/CreateBook.vue'),
-        },
-        {
-          path: 'edit/:id',
-          name: 'edit-book',
-          component: () => import('@/views/Books/CreateBook.vue'),
-        }
-      ]
     },
     {
-      path: "/:catchAll(.*)",  redirect: '/dashboard'
+      path: '/books/create',
+      name: 'create-book',
+      component: () => import('@/views/Books/CreateBook.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/books/edit/:id',
+      name: 'edit-book',
+      component: () => import('@/views/Books/CreateBook.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: "/:catchAll(.*)", redirect: '/dashboard'
     },
   ]
 })

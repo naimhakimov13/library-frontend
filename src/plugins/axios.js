@@ -3,12 +3,12 @@ import {useToast} from "vue-toastification";
 
 export const HTTP = axios.create({
   baseURL: 'https://troubled-leather-jacket-bee.cyclic.app/api',
-  headers: {
-    'Content-Type': "application/json",
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-  }
 })
 
+HTTP.interceptors.request.use(req => {
+  req.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+  return req
+})
 
 HTTP.interceptors.response.use(
   response => response.data,
@@ -16,7 +16,7 @@ HTTP.interceptors.response.use(
     const toast = useToast()
     if (Array.isArray(error?.response?.data)) {
       toast.error(error.response.data.join(', '))
-    } else {
+    } else if (error.response.data.message) {
       toast.error(error.response.data.message)
     }
     throw error

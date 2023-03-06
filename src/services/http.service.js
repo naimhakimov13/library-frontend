@@ -4,6 +4,10 @@ export function signIn(body) {
   return HTTP.post('/signin', body)
 }
 
+export function signUp(body) {
+  return HTTP.post('/signup', body)
+}
+
 export function getUsers() {
   return HTTP.get('/users')
 }
@@ -14,6 +18,10 @@ export function getUserById(id) {
 
 export function updateUser(id, user) {
   return HTTP.put(`/users/${id}`, user)
+}
+
+export function deleteUser(id) {
+  return HTTP.delete(`/users/${id}`)
 }
 
 //BOOK

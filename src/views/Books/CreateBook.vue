@@ -39,12 +39,13 @@ onMounted(async () => {
     formBook.release_year = data.release_year
     formBook.count_page = data.count_page
     formBook.category_id = data.category_id
+    formBook.image = data.image
+    formBook.pdf = data.pdf
   }
 })
 
 async function changePhoto(event, type) {
-  const url = await uploadFile(event)
-  formBook[type] = url.name
+  formBook[type] = await uploadFile(event)
 }
 
 async function onSubmit() {
@@ -67,8 +68,6 @@ async function onSubmit() {
 watch(formBook.image, (value, oldValue, onCleanup) => {
   console.log(value)
 })
-
-
 
 </script>
 
@@ -123,7 +122,7 @@ watch(formBook.image, (value, oldValue, onCleanup) => {
 
       <base-input @change="changePhoto($event,'image')" label="Фото" type="file" />
 
-      <base-input @change="changePhoto($event, 'image')" label="Pdf" type="file" />
+      <base-input @change="changePhoto($event, 'pdf')" label="Pdf" type="file" />
 
       <base-button type="submit">Сохранить</base-button>
 

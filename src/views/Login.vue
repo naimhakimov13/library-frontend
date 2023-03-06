@@ -1,5 +1,5 @@
 <script setup>
-import {reactive} from "vue";
+import {onMounted, reactive} from "vue";
 
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseCheckbox from '@/components/ui/BaseCheckbox.vue'
@@ -11,6 +11,12 @@ const form = reactive({
   email: null,
   password: null,
   remember: true
+})
+
+onMounted(() => {
+  if (localStorage.getItem('token')) {
+    router.push('/dashboard')
+  }
 })
 
 const userStore = useUserStore()
