@@ -3,6 +3,10 @@ import {useToast} from "vue-toastification";
 
 export const HTTP = axios.create({
   baseURL: 'https://troubled-leather-jacket-bee.cyclic.app/api',
+  // baseURL: 'http://localhost:3000/api',
+  headers: {
+    "Content-Type": "application/json"
+  }
 })
 
 HTTP.interceptors.request.use(req => {

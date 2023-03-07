@@ -22,19 +22,19 @@ const router = createRouter({
     {
       path: '/users',
       name: 'users',
-      component: () => import('@/views/Users/index.vue'),
+      component: () => import('@/views/User/index.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
       path: '/users/create',
       name: 'create',
-      component: () => import('@/views/Users/CreateUser.vue'),
+      component: () => import('@/views/User/CreateUser.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
       path: '/users/edit/:id',
       name: 'edit',
-      component: () => import('@/views/Users/CreateUser.vue'),
+      component: () => import('@/views/User/CreateUser.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
@@ -55,19 +55,31 @@ const router = createRouter({
     {
       path: '/books',
       name: 'books',
-      component: () => import('@/views/Books/index.vue'),
+      component: () => import('@/views/Book/index.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
       path: '/books/create',
       name: 'create-book',
-      component: () => import('@/views/Books/CreateBook.vue'),
+      component: () => import('@/views/Book/CreateBook.vue'),
       meta: {layout: 'main', auth: true},
     },
     {
       path: '/books/edit/:id',
       name: 'edit-book',
-      component: () => import('@/views/Books/CreateBook.vue'),
+      component: () => import('@/views/Book/CreateBook.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/returns',
+      name: 'returns',
+      component: () => import('@/views/Return/index.vue'),
+      meta: {layout: 'main', auth: true},
+    },
+    {
+      path: '/borrows',
+      name: 'borrows',
+      component: () => import('@/views/Borrow/index.vue'),
       meta: {layout: 'main', auth: true},
     },
     {

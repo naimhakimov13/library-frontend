@@ -8,8 +8,8 @@ export function signUp(body) {
   return HTTP.post('/signup', body)
 }
 
-export function getUsers() {
-  return HTTP.get('/users')
+export function getUsers(params) {
+  return HTTP.get('/users', {params})
 }
 
 export function getUserById(id) {
@@ -67,6 +67,50 @@ export function createCategory(category) {
 
 export function deleteCategory(id) {
   return HTTP.delete(`/categories/${id}`)
+}
+
+//RETURN
+
+export function getReturns() {
+  return HTTP.get('/returns')
+}
+
+export function getReturnByUserId(id) {
+  return HTTP.get(`/returns/${id}`)
+}
+
+export function createReturn(body) {
+  return HTTP.post(`/returns`, body)
+}
+
+export function updateReturn(id, body) {
+  return HTTP.put(`/returns/${id}`, body)
+}
+
+export function deleteReturn(id) {
+  return HTTP.delete(`/returns/${id}`)
+}
+
+//BORROW
+
+export function getBorrows() {
+  return HTTP.get('/borrows')
+}
+
+export function getBorrowByUserId(id) {
+  return HTTP.get(`/borrows/${id}`)
+}
+
+export function createBorrow(body) {
+  return HTTP.post(`/borrows`, body)
+}
+
+export function updateBorrow(id, body) {
+  return HTTP.put(`/borrows/${id}`, body)
+}
+
+export function deleteBorrow(id) {
+  return HTTP.delete(`/borrows/${id}`)
 }
 
 //upload file

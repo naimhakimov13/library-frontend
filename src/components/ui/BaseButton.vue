@@ -40,6 +40,8 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
+  line-height: 18px;
 
   &:hover {
     opacity: .8;

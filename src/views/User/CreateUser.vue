@@ -24,26 +24,29 @@ const user = reactive({
 })
 onMounted(async () => {
   if (userId) {
-    const data = await getUserById(route.params.id)
+    const data = await getUserById(userId)
     user.name = data.name
     user.email = data.email
     user.address = data.address
     user.phone = data.phone
     user.role = data.role
     user.gender = data.gender
+    user.image = data.image
   }
 })
 
 async function inputChange(event) {
-  user.phone = await uploadFile(event)
+  user.image = await uploadFile(event)
 }
 
 async function onSubmit() {
+  delete user.password
   if (userId) {
     await userStore.update(userId, user)
   } else {
     await userStore.create(user)
   }
+  router.push('/users')
 }
 
 </script>

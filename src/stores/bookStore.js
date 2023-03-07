@@ -5,12 +5,12 @@ import {getBooks, deleteBook, updateBookById, createBook} from "@/services/http.
 import {toast} from "@/plugins/toast";
 
 export const useBookStore = defineStore('books', () => {
-  const books = ref([])
+  const books = ref({content: [], pageSize: 10, currentPage: 0, items: 0})
   const isLoading = ref(false)
   const isError = ref(null)
 
   const rows = computed(() => {
-    return books.value.map(item => ({
+    return books.value.content.map(item => ({
       cells: [
         item._id,
         `<img src="${item?.image?.url ? item.image.url : '/src/assets/image/noimage.jpg'}"/>`,
@@ -30,7 +30,7 @@ export const useBookStore = defineStore('books', () => {
 
   async function get() {
     try {
-      if (!books.value.length) {
+      if (!books.value.content.length) {
         isLoading.value = true
         books.value = await getBooks()
         isLoading.value = false

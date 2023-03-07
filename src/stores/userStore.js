@@ -6,10 +6,10 @@ import {toast} from "@/plugins/toast";
 export const useUserStore = defineStore('user', () => {
   const isLoading = ref(false)
   const user = ref(JSON.parse(localStorage.getItem('user')))
-  const users = ref([])
+  const users = ref({content: [], pageSize: 10, currentPage: 0, items: 0})
 
   const rows = computed(() => {
-    return users.value.map(item => ({
+    return users.value.content.map(item => ({
       cells: [
         item._id,
         item.name,
@@ -33,7 +33,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function get() {
     try {
-      if (!users.value.length) {
+      if (!users.value.content.length) {
         isLoading.value = true
         users.value = await getUsers()
         isLoading.value = false
@@ -53,10 +53,13 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  async function update(id, user) {
+  async function update(id, body) {
     try {
-      user.user = await updateUser(id, user)
+      user.value = await updateUser(id, body)
+      localStorage.setItem('user', JSON.stringify(user.value))
       toast.success('Успешно обновлён')
+      users.value = []
+      await get()
     } catch (e) {
       throw e
     }

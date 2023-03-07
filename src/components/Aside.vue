@@ -1,4 +1,7 @@
 <script setup>
+import {useRoute} from "vue-router";
+import {ref, watch} from "vue";
+
 const items = [
   {
     name: 'Главная',
@@ -19,8 +22,25 @@ const items = [
     name: 'Книги',
     icon: 'book',
     link: '/books'
+  },
+  {
+    name: 'Возврат книги',
+    icon: 'return',
+    link: '/returns'
+  },
+  {
+    name: 'Забронировать книги',
+    icon: 'borrow',
+    link: '/borrows'
   }
 ]
+
+const route = useRoute()
+const linkActive = ref(route.path)
+
+watch(route, (value, oldValue, onCleanup) => {
+  linkActive.value = value.path
+})
 
 function logout() {
   localStorage.clear()
@@ -33,7 +53,7 @@ function logout() {
     <ul class="aside-list">
       <li class="aside__item"
           v-for="item in items">
-        <router-link :to="item.link" class="flex">
+        <router-link :to="item.link" class="flex" :class="linkActive.includes(item.link) ? 'active' : ''">
           <span :class="'icon-' + item.icon " class="icon"></span>
           {{ item.name }}
         </router-link>
@@ -75,7 +95,7 @@ function logout() {
     transition: .4s all;
 
 
-    &:has(.router-link-active) {
+    &:has(.active) {
       background: $green;
 
       .icon {
@@ -91,7 +111,7 @@ function logout() {
       text-decoration: none;
       cursor: pointer;
 
-      &.router-link-active {
+      &.active {
         color: $white;
       }
     }
