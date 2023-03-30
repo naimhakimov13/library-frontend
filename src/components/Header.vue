@@ -12,7 +12,7 @@ const userStore = useUserStore()
       </select>
     </div>
 
-    {{ userstore.user.name }}
+    {{ userStore.user.name }}
 
     <img :src="userStore.user?.image?.url ?  userStore.user?.image?.url : noImage"
          @error="$event.target.src = noImage"
