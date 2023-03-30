@@ -6,7 +6,13 @@ const userStore = useUserStore()
 
 <template>
   <header>
-    {{ userStore.user.name }}
+    <div class="locale-changer">
+      <select v-model="$i18n.locale">
+        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
+      </select>
+    </div>
+
+    {{ userstore.user.name }}
 
     <img :src="userStore.user?.image?.url ?  userStore.user?.image?.url : noImage"
          @error="$event.target.src = noImage"

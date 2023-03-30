@@ -22,6 +22,7 @@ const user = reactive({
   role: null,
   password: null,
 })
+
 onMounted(async () => {
   if (userId) {
     const data = await getUserById(userId)
@@ -41,12 +42,16 @@ async function inputChange(event) {
 
 async function onSubmit() {
   delete user.password
-  if (userId) {
-    await userStore.update(userId, user)
-  } else {
-    await userStore.create(user)
+  try {
+    if (userId) {
+      await userStore.update(userId, user)
+    } else {
+      await userStore.create(user)
+    }
+    router.push('/users')
+  } catch (e) {
+    throw e
   }
-  router.push('/users')
 }
 
 </script>

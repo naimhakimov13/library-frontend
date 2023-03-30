@@ -10,6 +10,7 @@ onMounted(async () => {
 
 async function getByEmail(event) {
   users.value = await getUsers({email: event.target.value})
+
 }
 </script>
 

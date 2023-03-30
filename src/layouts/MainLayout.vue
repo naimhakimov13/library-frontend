@@ -1,3 +1,8 @@
+<script setup>
+import Aside from '@/components/Aside.vue'
+import Header from '@/components/Header.vue'
+</script>
+
 <template>
   <div class="main">
     <Aside/>
@@ -20,7 +25,6 @@
     margin-top: 60px;
     width: 100%;
     margin-left: 300px;
-
   }
 }
 </style>

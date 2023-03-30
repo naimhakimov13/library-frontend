@@ -20,6 +20,15 @@ export const useUserStore = defineStore('user', () => {
     }))
   })
 
+  async function clearUsersContent() {
+    try {
+      users.value.content = []
+      await get()
+    } catch (e) {
+      throw e
+    }
+  }
+
   async function login(body) {
     try {
       const data = await signIn(body)
@@ -57,9 +66,8 @@ export const useUserStore = defineStore('user', () => {
     try {
       user.value = await updateUser(id, body)
       localStorage.setItem('user', JSON.stringify(user.value))
+      await clearUsersContent()
       toast.success('Успешно обновлён')
-      users.value = []
-      await get()
     } catch (e) {
       throw e
     }
@@ -68,8 +76,8 @@ export const useUserStore = defineStore('user', () => {
   async function create(user) {
     try {
       await signUp(user)
-      users.value = []
-      await get()
+      await clearUsersContent()
+      toast.success('Успешно создан')
     } catch (e) {
       throw e
     }

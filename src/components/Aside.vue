@@ -4,32 +4,32 @@ import {ref, watch} from "vue";
 
 const items = [
   {
-    name: 'Главная',
+    name: 'menu.main',
     icon: 'home',
     link: '/dashboard'
   },
   {
-    name: 'Пользователи',
+    name: 'menu.users',
     icon: 'users',
     link: '/users'
   },
   {
-    name: 'Категории',
+    name: 'menu.category',
     icon: 'category',
     link: '/category'
   },
   {
-    name: 'Книги',
+    name: 'menu.book',
     icon: 'book',
     link: '/books'
   },
   {
-    name: 'Возврат книги',
+    name: 'menu.return',
     icon: 'return',
     link: '/returns'
   },
   {
-    name: 'Забронировать книги',
+    name: 'menu.borrow',
     icon: 'borrow',
     link: '/borrows'
   }
@@ -55,13 +55,13 @@ function logout() {
           v-for="item in items">
         <router-link :to="item.link" class="flex" :class="linkActive.includes(item.link) ? 'active' : ''">
           <span :class="'icon-' + item.icon " class="icon"></span>
-          {{ item.name }}
+          {{ $t(item.name) }}
         </router-link>
       </li>
       <li class="aside__item" @click="logout">
         <a>
           <span class="icon icon-logout"></span>
-          Выйти
+          {{ $t('menu.logout') }}
         </a>
       </li>
     </ul>
