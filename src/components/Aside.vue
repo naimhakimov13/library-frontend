@@ -74,8 +74,9 @@ function logout() {
 
 .aside {
   padding: 20px 0;
-  background: $gray-300;
-  border-right: 1px solid $gray-400;
+  background: var(--gray-300);
+  border-right: 1px solid var(--gray-400);
+  background: var(--white);
   height: 100vh;
   width: 299px;
   position: fixed;
@@ -96,10 +97,10 @@ function logout() {
 
 
     &:has(.active) {
-      background: $green;
+      background: var(--primary);
 
       .icon {
-        background: $white;
+        background: var(--white);
       }
     }
 
@@ -107,12 +108,19 @@ function logout() {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: $black;
+      color: var(--black);
       text-decoration: none;
       cursor: pointer;
 
       &.active {
-        color: $white;
+        color: white;
+        .icon {
+          background-color: white;
+        }
+      }
+
+      .icon {
+        background-color: var(--black);
       }
     }
   }

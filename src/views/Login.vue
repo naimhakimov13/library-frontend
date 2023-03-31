@@ -1,12 +1,15 @@
 <script setup>
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, ref} from "vue";
 
-import BaseInput from '@/components/ui/BaseInput.vue'
-import BaseCheckbox from '@/components/ui/BaseCheckbox.vue'
 import {useUserStore} from "@/stores/userStore";
 import {useRouter} from "vue-router";
-const router = useRouter()
+import BaseInput from '@/components/ui/BaseInput.vue'
+import BaseCheckbox from '@/components/ui/BaseCheckbox.vue'
 
+const router = useRouter()
+const userStore = useUserStore()
+
+const loading = ref(false)
 const form = reactive({
   email: null,
   password: null,
@@ -19,52 +22,51 @@ onMounted(() => {
   }
 })
 
-const userStore = useUserStore()
 async function onSubmit() {
   delete form.remember
+  loading.value = true
   await userStore.login(form)
+  loading.value = false
   router.push('/dashboard')
 }
-
 </script>
 
 <template>
   <div class="login">
-    <h1 class="login-title title">
-      Панель администратора
-    </h1>
+    <h2 class="login-title title">
+      {{ $t('login.title') }}
+    </h2>
     <form class="login-form">
       <base-input
           v-model="form.email"
-          label="Email"
+          :label="$t('login.email')"
           type="email"
-          placeholder="Ваш Email"/>
+          :placeholder="$t('login.your_email')"/>
       <base-input
           v-model="form.password"
           type="password"
-          label="Пароль"
-          placeholder="Ваш Пароль"/>
+          :label="$t('login.password')"
+          :placeholder="$t('login.your_password')" />
       <base-checkbox
           v-model="form.remember"
-          label="Запомный меня"/>
+          :label="$t('login.remember')"/>
     </form>
 
     <base-button
+        :loading="loading"
         type="submit"
         color="primary"
         @click="onSubmit">
-      Вход
+      {{ $t('login.sign_in') }}
     </base-button>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/styles/variables";
-
 .login {
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid $gray-400;
+  border: 1px solid var(--gray-400);
 
   &-title {
     margin-bottom: 12px;

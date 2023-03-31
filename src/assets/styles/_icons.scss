@@ -71,6 +71,16 @@
     -webkit-mask: url("@/assets/svg/search.svg") no-repeat 50% 50%;
     mask: url("@/assets/svg/search.svg") no-repeat 50% 50%;
   }
+
+  &-sun {
+    -webkit-mask: url("@/assets/svg/sun.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/sun.svg") no-repeat 50% 50%;
+  }
+
+  &-moon {
+    -webkit-mask: url("@/assets/svg/moon.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/moon.svg") no-repeat 50% 50%;
+  }
 }
 
 @keyframes loading {

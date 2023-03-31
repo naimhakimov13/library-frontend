@@ -11,3 +11,22 @@
 .Vue-Toastification__toast-body {
   color: white;
 }
+
+:root {
+  transition: background-color .5s;
+  --primary: #0d6efd;
+  --white: #fff;
+  --text-white: #fff;
+  --gray-400: #d1d5db;
+  --gray-300: #F4F5F7;
+  --black: #263238;
+}
+
+.dark {
+  --primary: #0d6efd;
+  --text-white: #fff;
+  --white: rgb(22 22 24);
+  --gray-400: rgb(51 51 51);
+  --gray-300: #F4F5F7;
+  --black: var(--text-white);
+}

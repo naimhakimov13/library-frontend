@@ -17,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <button :type="type" class="btn" :class="'btn-' + color">
+  <button :disabled="loading" :type="type" class="btn" :class="'btn-' + color">
     <slot/>
     <div v-if="loading" class="lds-ring">
       <div></div>
@@ -50,13 +50,17 @@ const props = defineProps({
   &-primary {
     background: $green;
   }
+
+  &:disabled {
+    opacity: .8;
+  }
 }
 
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
 }
 
@@ -64,8 +68,8 @@ const props = defineProps({
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border: 3px solid #fff;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
