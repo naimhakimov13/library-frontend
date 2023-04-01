@@ -24,7 +24,7 @@ const updateValue = (event) => {
   if (props.type === 'file') {
     emit('change', event.target.files[0])
   } else {
-    emit('update:modelValue', event.target.value)
+    emit(c, event.target.value)
   }
 }
 </script>
@@ -46,6 +46,17 @@ const updateValue = (event) => {
 <style scoped lang="scss">
 @import "@/assets/styles/variables";
 
+
+:root {
+  --dark-gray: #fff;
+}
+
+.dark {
+  :root {
+    --dark-gray: gray;
+  }
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
@@ -53,6 +64,7 @@ const updateValue = (event) => {
 
   &__field {
     border: 1px solid $gray-400;
+    background: var(--dark-gray);
     border-radius: 8px;
     outline: none;
     padding: 10px;

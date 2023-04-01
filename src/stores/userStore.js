@@ -7,6 +7,7 @@ export const useUserStore = defineStore('user', () => {
   const isLoading = ref(false)
   const user = ref(JSON.parse(localStorage.getItem('user')))
   const users = ref({content: [], pageSize: 10, currentPage: 0, items: 0})
+  const noAvatar = 'https://media.istockphoto.com/id/1016744004/vector/profile-placeholder-image-gray-silhouette-no-photo.jpg?s=612x612&w=0&k=20&c=mB6A9idhtEtsFXphs1WVwW_iPBt37S2kJp6VpPhFeoA='
 
   const rows = computed(() => {
     return users.value.content.map(item => ({
@@ -84,7 +85,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   return {
-    isLoading, user, users, rows,
+    isLoading, user, users, rows, noAvatar,
     get, login, deleteUserById, update, create
   }
 })
