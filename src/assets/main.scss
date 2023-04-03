@@ -13,20 +13,21 @@
 }
 
 :root {
-  transition: background-color .5s;
   --primary: #0d6efd;
   --white: #fff;
   --text-white: #fff;
   --gray-400: #d1d5db;
   --gray-300: #F4F5F7;
-  --black: #263238;
+  --black: #0D1117;
+  --table-bg: white;
 }
 
 .dark {
   --primary: #0d6efd;
   --text-white: #fff;
-  --white: rgb(22 22 24);
+  --white: #1A1A1A;
   --gray-400: rgb(51 51 51);
   --gray-300: #F4F5F7;
-  --black: var(--text-white);
+  --black: rgb(255 255 255 / 87%);
+  --table-bg: #242424;
 }

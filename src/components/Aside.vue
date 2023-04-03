@@ -43,7 +43,8 @@ watch(route, (value, oldValue, onCleanup) => {
 })
 
 function logout() {
-  localStorage.clear()
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
   window.location.reload()
 }
 </script>

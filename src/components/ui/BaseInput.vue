@@ -49,7 +49,6 @@ const updateValue = (event) => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 400px;
 
   &__field {
     border: 1px solid var(--gray-400);

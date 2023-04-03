@@ -16,10 +16,9 @@ import Header from '@/components/Header.vue'
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/styles/variables";
-
 .main {
   display: flex;
+  height: calc(100vh - 40px);
 
   &-views {
     margin-top: 60px;

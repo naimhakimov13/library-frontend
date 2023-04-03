@@ -59,13 +59,15 @@ table {
   width: 100%;
   padding: 0;
   border-spacing: 0;
+  background: var(--table-bg);
 
   th, td {
     text-align: left;
     padding: 15px;
     font-size: 14px;
     line-height: 14px;
-    border-bottom: 1px solid $gray-300;
+    border-bottom: 1px solid var(--gray-400);
+    color: var(--black);
 
     img {
       width: 40px;
@@ -77,7 +79,7 @@ table {
   tr:has(th) {
     font-size: 14px;
     line-height: 14px;
-    background: $gray-300;
+    background: var(--gray-400);
     text-transform: uppercase;
     font-size: 14px;
   }
