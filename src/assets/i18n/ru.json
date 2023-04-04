@@ -7,5 +7,14 @@
     "borrow": "Возврат книги",
     "return": "Забронировать книги",
     "logout": "Выйти"
+  },
+  "login": {
+    "title": "Панель администратора",
+    "email": "Email",
+    "your_email": "Ваш email",
+    "your_password": "Ваш пароль",
+    "password": "Пароль",
+    "remember": "Запомный меня",
+    "sign_in": "Вход"
   }
 }

@@ -11,3 +11,23 @@
 .Vue-Toastification__toast-body {
   color: white;
 }
+
+:root {
+  --primary: #0d6efd;
+  --white: #fff;
+  --text-white: #fff;
+  --gray-400: #d1d5db;
+  --gray-300: #F4F5F7;
+  --black: #0D1117;
+  --table-bg: white;
+}
+
+.dark {
+  --primary: #0d6efd;
+  --text-white: #fff;
+  --white: #1A1A1A;
+  --gray-400: rgb(51 51 51);
+  --gray-300: #F4F5F7;
+  --black: rgb(255 255 255 / 87%);
+  --table-bg: #242424;
+}

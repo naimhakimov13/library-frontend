@@ -46,6 +46,8 @@ const updateValue = (event) => {
 }
 
 input[type=checkbox] {
+  background-color: var(--gray-400);
+  border-color: var(--gray-400);
   width: 24px;
   height: 24px;
   border-radius: 5px;
@@ -55,11 +57,11 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked {
-  accent-color: $white;
+  accent-color: var(--white);
   background-image: url("@/assets/svg/check.svg");
   background-repeat: no-repeat;
-  background-color: $green;
-  border-color: $green;
+  background-color: var(--primary);
+  border-color: var(--gray-400);
   background-position: top 1px left 1px;
 }
 

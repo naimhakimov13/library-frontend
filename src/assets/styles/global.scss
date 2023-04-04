@@ -4,15 +4,18 @@
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  color: $black;
+  color: var(--black);
+  transition: .5s all ease-in-out;
 }
 
 :root {
-  --vs-dropdown-option--active-bg: #0d6efd;
+  --vs-dropdown-option--active-bg: var(--primary);
 }
 
 .page {
   padding: 20px;
+  background: var(--white);
+  height: 100%;
 
   &__title {
     font-size: 28px;
@@ -23,13 +26,13 @@
 
 .vs__dropdown-toggle {
   border-radius: 8px;
-  border: 1px solid $gray-400;
+  border: 1px solid var(--gray-400);
   height: 42px;
 
   .vs__selected {
     font-size: 14px;
     line-height: 20px;
-    color: $black;
+    color: var(--black);
   }
 }
 
@@ -38,7 +41,7 @@
   padding: 0;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
@@ -48,4 +51,20 @@
 
 .justify-center {
   justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+select {
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  background: var(--white);
+  outline: none;
+  padding: 3px;
 }

@@ -1,12 +1,14 @@
 <template>
-  <component :is="layout">
-<!--    <router-view/>-->
-  </component>
+  <div>
+    <component :is="layout"/>
+    <ThemeToggle/>
+  </div>
 </template>
 
 <script>
-import main from './layouts/MainLayout.vue'
-import empty from './layouts/EmptyLayout.vue'
+import main from '@/layouts/MainLayout.vue'
+import empty from '@/layouts/EmptyLayout.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
 
 export default {
   computed: {
@@ -15,6 +17,7 @@ export default {
     }
   },
   components: {
+    ThemeToggle,
     empty,
     main
   }

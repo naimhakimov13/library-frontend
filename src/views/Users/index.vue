@@ -24,24 +24,22 @@ async function deleteUserById(id) {
 </script>
 
 <template>
-  <div class="page">
-    <div>
-      <div class="flex justify-between">
-        <h1>Пользователи</h1>
-        <BaseButton @click="router.push('/users/create')">Создать пользователя</BaseButton>
-      </div>
-
-
-      <BaseTable
-          :is-show-icon="true"
-          :loading="userStore.isLoading"
-          :columns="columns"
-          :rows="userStore.rows"
-          @edit="editUserById"
-          @delete="deleteUserById"
-        >
-      </BaseTable>
+  <div>
+    <div class="flex justify-between">
+      <h1>Пользователи</h1>
+      <BaseButton @click="router.push('/users/create')">Создать пользователя</BaseButton>
     </div>
+
+
+    <BaseTable
+        :is-show-icon="true"
+        :loading="userStore.isLoading"
+        :columns="columns"
+        :rows="userStore.rows"
+        @edit="editUserById"
+        @delete="deleteUserById"
+    >
+    </BaseTable>
   </div>
 </template>
 

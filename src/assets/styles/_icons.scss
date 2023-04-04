@@ -10,7 +10,7 @@
   mask-position: center;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  background: $black;
+  background: var(--black);
 
   &-home {
     -webkit-mask: url("@/assets/svg/home.svg") no-repeat 50% 50%;
@@ -70,6 +70,17 @@
   &-search {
     -webkit-mask: url("@/assets/svg/search.svg") no-repeat 50% 50%;
     mask: url("@/assets/svg/search.svg") no-repeat 50% 50%;
+  }
+
+  &-sun {
+    -webkit-mask: url("@/assets/svg/sun.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/sun.svg") no-repeat 50% 50%;
+    background: var(--text-white);
+  }
+
+  &-moon {
+    -webkit-mask: url("@/assets/svg/moon.svg") no-repeat 50% 50%;
+    mask: url("@/assets/svg/moon.svg") no-repeat 50% 50%;
   }
 }
 
