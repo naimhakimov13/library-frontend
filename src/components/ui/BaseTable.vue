@@ -1,4 +1,6 @@
 <script setup>
+import BaseButton from "@/components/ui/BaseButton.vue";
+
 const props = defineProps({
   columns: {
     default: []
@@ -10,6 +12,9 @@ const props = defineProps({
     default: false
   },
   isShowIcon: {
+    default: false
+  },
+  showButton: {
     default: false
   }
 })
@@ -33,6 +38,7 @@ defineEmits({
           <th></th>
           <th></th>
         </template>
+        <th v-if="showButton"></th>
       </tr>
 
       <tr v-for="item of rows">
@@ -41,6 +47,9 @@ defineEmits({
           <td><span class="icon icon-trash" @click="$emit('delete', item.cells[0])"></span></td>
           <td><span class="icon icon-edit" @click="$emit('edit', item.cells[0])"></span></td>
         </template>
+        <td v-if="showButton">
+          <base-button @click="$emit('edit', item.cells[0])">Выбрать</base-button>
+        </td>
       </tr>
     </table>
 
