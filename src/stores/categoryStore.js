@@ -38,6 +38,7 @@ export const useCategoryStore = defineStore('category', () => {
     try {
       const data = await createCategory(category)
       categoryList.value = [...categoryList.value, data]
+      toast.success('Успешно создан')
     } catch (err) {
       throw err
     }

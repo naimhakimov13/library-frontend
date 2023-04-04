@@ -113,7 +113,7 @@ export function deleteBorrow(id) {
   return HTTP.delete(`/borrows/${id}`)
 }
 
-//upload file
+//file
 
 export function uploadFile(file) {
   return HTTP.post('/file/upload', {
@@ -122,5 +122,11 @@ export function uploadFile(file) {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
+  })
+}
+
+export function removeFile(public_id) {
+  return HTTP.post('/file/remove', {
+    public_id
   })
 }

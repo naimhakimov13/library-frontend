@@ -49,7 +49,7 @@ defineEmits({
 </template>
 
 <style lang="scss">
-@import "@/assets/styles/_variables.scss";
+@import "@/assets/styles/_form.scss";
 
 .table {
   margin-top: 20px;

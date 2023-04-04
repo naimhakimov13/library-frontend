@@ -4,7 +4,6 @@ import { createI18n } from "vue-i18n";
 import Toast from "vue-toastification";
 
 import "vue-toastification/dist/index.css";
-import 'vue-select/dist/vue-select.css';
 import '@/assets/main.scss'
 
 import App from '@/App.vue'

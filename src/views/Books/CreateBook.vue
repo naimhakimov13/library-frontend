@@ -1,9 +1,9 @@
 <script setup>
-import {onMounted, reactive, watch} from "vue"
+import {onMounted, reactive, ref, watch} from "vue"
 import {useRoute, useRouter} from "vue-router"
-import vSelect from "vue-select";
 
 import BaseInput from '@/components/ui/BaseInput.vue'
+import BaseSelect from '@/components/ui/BaseSelect.vue'
 import {getBookById, uploadFile} from "@/services/http.service"
 import {useCategoryStore} from "@/stores/categoryStore"
 import {useBookStore} from "@/stores/bookStore"
@@ -26,7 +26,7 @@ let formBook = reactive({
   image: null,
   pdf: null
 })
-
+const loading = ref(false)
 onMounted(async () => {
   await categoryStore.get()
   if (route.params.id) {
@@ -49,26 +49,26 @@ async function changePhoto(event, type) {
 }
 
 async function onSubmit() {
-  if (route.params.id) {
-    await bookStore.update(route.params.id, {
-      ...formBook,
-      category_id: formBook.category_id?._id
-    })
+  try {
+    loading.value = true
+    if (route.params.id) {
+      await bookStore.update(route.params.id, {
+        ...formBook,
+        category_id: formBook.category_id?._id
+      })
 
-  } else {
-    await bookStore.create({
-      ...formBook,
-      category_id: formBook.category_id?._id
-    })
+    } else {
+      await bookStore.create({
+        ...formBook,
+        category_id: formBook.category_id?._id
+      })
+    }
+    loading.value = false
+    await router.push('/books')
+  } catch (e) {
+    throw e
   }
-
-  router.push('/books')
 }
-
-watch(formBook.image, (value, oldValue, onCleanup) => {
-  console.log(value)
-})
-
 </script>
 
 <template>
@@ -115,16 +115,16 @@ watch(formBook.image, (value, oldValue, onCleanup) => {
           placeholder="Количество страниц"
           type="number"/>
 
-      <v-select
+      <base-select
           v-model="formBook.category_id"
           :options="categoryStore.categoryList"
-          label="name"/>
+          label="Категориый"/>
 
       <base-input @change="changePhoto($event,'image')" label="Фото" type="file" />
 
       <base-input @change="changePhoto($event, 'pdf')" label="Pdf" type="file" />
 
-      <base-button type="submit">Сохранить</base-button>
+      <base-button :loading="loading" type="submit">Сохранить</base-button>
 
     </form>
   </div>

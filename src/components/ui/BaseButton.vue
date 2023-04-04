@@ -29,26 +29,24 @@ const props = defineProps({
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/variables';
-
 .btn {
-  padding: 15px 25px;
+  padding: 10px 20px;
   border-radius: 8px;
-  color: $white;
+  color: var(--text-white);
   outline: none;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 16px;
 
   &:hover {
     opacity: .8;
   }
 
   &-primary {
-    background: $green;
+    background: var(--primary);
   }
 
   &:disabled {
@@ -96,6 +94,4 @@ const props = defineProps({
     transform: rotate(360deg);
   }
 }
-
-
 </style>

@@ -18,12 +18,13 @@ import Header from '@/components/Header.vue'
 <style scoped lang="scss">
 .main {
   display: flex;
-  height: calc(100vh - 40px);
+  background: var(--white);
 
   &-views {
-    margin-top: 60px;
+    margin-top: 65px;
     width: 100%;
     margin-left: 300px;
+    height: calc(100vh - 65px);
   }
 }
 </style>

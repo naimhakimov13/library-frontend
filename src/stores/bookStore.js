@@ -63,7 +63,7 @@ export const useBookStore = defineStore('books', () => {
   async function update(id, book) {
     try {
       const newBook = await updateBookById(id, book)
-      const idx = books.value.findIndex(item => item._id === id)
+      const idx = books.value.content.findIndex(item => item._id === id)
       books.value[idx] = newBook
       toast.success('Успешно обновлён')
     } catch (err) {

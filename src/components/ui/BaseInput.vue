@@ -42,33 +42,3 @@ const updateValue = (event) => {
         :placeholder="placeholder"/>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-.form-control {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  &__field {
-    border: 1px solid var(--gray-400);
-    border-radius: 8px;
-    outline: none;
-    padding: 10px;
-    transition: .4s all;
-    font-size: 14px;
-    line-height: 20px;
-    background: var(--gray-400);
-
-    &:hover {
-      border-color: var(--primary);
-    }
-  }
-}
-
-.dark {
-  .form-control__field {
-    color-scheme: dark;
-  }
-}
-</style>

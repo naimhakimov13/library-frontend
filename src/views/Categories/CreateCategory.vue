@@ -7,6 +7,7 @@ import {useCategoryStore} from "@/stores/categoryStore";
 import {getCategoryById} from "@/services/http.service";
 
 const name = ref(null)
+const loading = ref(false)
 const router = useRouter()
 const route = useRoute()
 const categoryStore = useCategoryStore()
@@ -22,12 +23,18 @@ onMounted(async () => {
 })
 
 async function onSubmit() {
-  if (route.params?.id) {
-    await categoryStore.update(route.params.id, name.value)
-  } else {
-    await categoryStore.create({name: name.value})
+  try {
+    loading.value = true
+    if (route.params?.id) {
+      await categoryStore.update(route.params.id, name.value)
+    } else {
+      await categoryStore.create({name: name.value})
+    }
+    loading.value = false
+    await router.push('/category')
+  } catch (e) {
+    throw e
   }
-  router.push('/category')
 }
 
 </script>
@@ -48,7 +55,7 @@ async function onSubmit() {
           type="text"
           placeholder="Название"/>
 
-      <base-button type="submit">Сохранить</base-button>
+      <base-button :loading="loading" type="submit">Сохранить</base-button>
 
 
     </form>

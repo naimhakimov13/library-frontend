@@ -1,16 +1,17 @@
 <script setup>
-import {useUserStore} from "@/stores/userStore";
+import {onMounted, reactive, ref} from "vue";
 import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive} from "vue";
-import vSelect from "vue-select";
 
 import BaseInput from '@/components/ui/BaseInput.vue'
-import {getUserById, uploadFile} from "@/services/http.service";
+import BaseSelect from '@/components/ui/BaseSelect.vue'
+import {getUserById, removeFile, uploadFile} from "@/services/http.service";
+import {useUserStore} from "@/stores/userStore"
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 const userId = route.params.id
+const loading = ref(false)
 
 const user = reactive({
   name: null,
@@ -41,14 +42,26 @@ async function inputChange(event) {
 }
 
 async function onSubmit() {
-  delete user.password
   try {
+    loading.value = true
     if (userId) {
+      delete user.password
       await userStore.update(userId, user)
     } else {
       await userStore.create(user)
     }
-    router.push('/users')
+    loading.value = false
+    await router.push('/users')
+  } catch (e) {
+    loading.value = false
+    throw e
+  }
+}
+
+async function deleteFile(id) {
+  try {
+    await removeFile(id)
+    user.image = null
   } catch (e) {
     throw e
   }
@@ -87,25 +100,35 @@ async function onSubmit() {
           v-model="user.phone"/>
 
 
-      <v-select
-          placholder="werwer"
+      <BaseSelect
+          label="Роль"
           v-model="user.role"
           :options="['admin', 'student', 'teacher']"/>
 
-
-      <v-select
+      <BaseSelect
+          label="Пол"
           v-model="user.gender"
           :options="['male', 'female']"/>
 
+      <div class="form-control__file">
+        <BaseInput
+            type="file"
+            label="Фото"
+            @change="inputChange"
+        />
 
-      <BaseInput
-          type="file"
-          label="Фото"
-          @change="inputChange"
-      />
+        <div v-if="user.image?.url" class="form-control__file-image">
+          <img :src="user.image?.url" alt="">
 
-      <BaseButton type="submit">{{ userId ? 'Обновить' : 'Создать' }}</BaseButton>
+          <div class="form-control__file-close" @click="deleteFile(user.image.public_id)">&times;</div>
+        </div>
+      </div>
 
+      <BaseButton
+          :loading="loading"
+          type="submit">
+        {{ userId ? 'Обновить' : 'Создать' }}
+      </BaseButton>
 
     </form>
   </div>

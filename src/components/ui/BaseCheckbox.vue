@@ -32,21 +32,19 @@ const updateValue = (event) => {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/variables';
-
 .checkbox {
   display: flex;
   align-items: center;
   gap: 12px;
 
   input {
-    border: 1px solid $gray-400;
+    border: 1px solid var(--gray-400);
 
   }
 }
 
 input[type=checkbox] {
-  background-color: var(--gray-400);
+  background-color: var(--input-color);
   border-color: var(--gray-400);
   width: 24px;
   height: 24px;

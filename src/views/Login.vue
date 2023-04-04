@@ -23,11 +23,15 @@ onMounted(() => {
 })
 
 async function onSubmit() {
-  delete form.remember
-  loading.value = true
-  await userStore.login(form)
-  loading.value = false
-  router.push('/dashboard')
+  try {
+    delete form.remember
+    loading.value = true
+    await userStore.login(form)
+    loading.value = false
+    router.push('/dashboard')
+  } catch (err) {
+    loading.value = false
+  }
 }
 </script>
 

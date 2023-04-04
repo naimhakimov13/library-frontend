@@ -1,11 +1,8 @@
-@import "variables";
-
 * {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   color: var(--black);
-  transition: .5s all ease-in-out;
 }
 
 :root {
@@ -15,7 +12,6 @@
 .page {
   padding: 20px;
   background: var(--white);
-  height: 100%;
 
   &__title {
     font-size: 28px;
@@ -59,12 +55,4 @@
 
 .gap-8 {
   gap: 8px;
-}
-
-select {
-  border: 1px solid var(--gray-400);
-  border-radius: 8px;
-  background: var(--white);
-  outline: none;
-  padding: 3px;
 }

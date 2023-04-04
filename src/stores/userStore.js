@@ -13,6 +13,7 @@ export const useUserStore = defineStore('user', () => {
     return users.value.content.map(item => ({
       cells: [
         item._id,
+        item.barcode,
         item.name,
         item.email,
         item.phone,
@@ -57,7 +58,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       await deleteUser(id)
       toast.success('Успешно удаленно')
-      users.value = users.value.filter(book => book._id !== id)
+      users.value = users.value.content.filter(book => book._id !== id)
     } catch (err) {
       throw err
     }
@@ -66,7 +67,10 @@ export const useUserStore = defineStore('user', () => {
   async function update(id, body) {
     try {
       user.value = await updateUser(id, body)
-      localStorage.setItem('user', JSON.stringify(user.value))
+      const userData = localStorage.getItem('user')
+      if (userData._id === user.value._id) {
+        localStorage.setItem('user', JSON.stringify(user.value))
+      }
       await clearUsersContent()
       toast.success('Успешно обновлён')
     } catch (e) {

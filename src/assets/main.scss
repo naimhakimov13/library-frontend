@@ -1,6 +1,6 @@
 @import "styles/global";
 @import "styles/icons";
-@import "styles/variables";
+@import "styles/form";
 
 .Vue-Toastification__toast {
   path {
@@ -20,14 +20,16 @@
   --gray-300: #F4F5F7;
   --black: #0D1117;
   --table-bg: white;
+  --input-color: #fff;
+  --red: #dc3545;
 }
 
 .dark {
-  --primary: #0d6efd;
   --text-white: #fff;
   --white: #1A1A1A;
   --gray-400: rgb(51 51 51);
   --gray-300: #F4F5F7;
   --black: rgb(255 255 255 / 87%);
   --table-bg: #242424;
+  --input-color: rgb(51 51 51);
 }
