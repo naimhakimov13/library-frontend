@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   modelValue: String,
   options: {
     type: Array,
@@ -13,7 +13,6 @@ defineProps({
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function changeSelect(event) {
-  console.log(event.target.value)
   emit('update:modelValue', event.target.value)
 }
 </script>
@@ -21,7 +20,7 @@ function changeSelect(event) {
 <template>
   <div class="form-control">
     <label v-if="label">{{ label }}</label>
-    <select @change="changeSelect">
+    <select @change="changeSelect" :value="modelValue">
       <option v-for="option in options" :key="option._id" :value="option._id">
         {{ typeof option === 'string' ? option : option.name}}
       </option>

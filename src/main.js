@@ -11,20 +11,17 @@ import router from '@/router'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import Loader from '@/components/Loader.vue'
 
-import ru from '@/assets/i18n/ru.json'
+import ru from '@/assets/i18n/ru'
 import tj from '@/assets/i18n/tj'
-
-const messages = {
-  ru: ru,
-  tj: tj
-}
 
 const i18n = createI18n({
   globalInjection: true,
-  locale: 'ru',
-  fallbackLocale: 'ru',
+  locale: localStorage.getItem('lang'),
   legacy: false,
-  messages
+  messages: {
+    ru: ru,
+    tj: tj
+  }
 })
 
 const app = createApp(App)

@@ -1,6 +1,8 @@
 <script setup>
 import BaseSelect from '@/components/ui/BaseSelect.vue'
 import {useUserStore} from "@/stores/userStore";
+import { useI18n } from 'vue-i18n'
+import {watch} from "vue";
 
 const userStore = useUserStore()
 
@@ -8,12 +10,19 @@ const lang = {
   ru: 'Русскый',
   tj: 'Точики'
 }
+
+const i18n = useI18n()
+
+watch(i18n.locale, (value, oldValue, onCleanup) => {
+  localStorage.setItem('lang', value)
+})
+
 </script>
 
 <template>
   <header>
-    <BaseSelect v-model="$i18n.locale"
-                :options="$i18n.availableLocales.map(key => ({_id: key,name: lang[key]}))"></BaseSelect>
+    <BaseSelect v-model="i18n.locale.value"
+                :options="$i18n.availableLocales.map(key => ({_id: key,name: lang[key]}))" />
 
     <div class="flex justify-between items-center gap-8">
       {{ userStore.user.name }}

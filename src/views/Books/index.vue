@@ -28,8 +28,8 @@ function editBook(id) {
 <template>
   <div>
     <div class="flex justify-between">
-      <h1 class="page__title">Книги</h1>
-      <BaseButton color="primary" @click="router.push('/books/create')">Создать книгу</BaseButton>
+      <h1 class="page__title">{{ $t('menu.book') }}</h1>
+      <BaseButton color="primary" @click="router.push('/books/create')">{{ $t('book.create') }}</BaseButton>
     </div>
     <BaseTable
         :is-show-icon="true"

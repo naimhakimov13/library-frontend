@@ -17,12 +17,11 @@ async function deleteBook(id) {
 
 </script>
 
-
 <template>
   <div>
     <div class="flex justify-between">
-      <h1 class="page__title">Категории</h1>
-      <BaseButton @click="$router.push('/category/create')">Создать категории</BaseButton>
+      <h1 class="page__title">{{ $t('menu.category') }}</h1>
+      <BaseButton @click="$router.push('/category/create')">{{ $t('category.create')}}</BaseButton>
     </div>
     <BaseTable
         :is-show-icon="true"

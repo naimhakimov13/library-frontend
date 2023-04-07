@@ -24,10 +24,6 @@ export const useBookStore = defineStore('books', () => {
     }))
   })
 
-  function getBookById(id) {
-    return books.value.find(item => item._id === id)
-  }
-
   async function get() {
     try {
       if (!books.value.content.length) {
@@ -44,7 +40,7 @@ export const useBookStore = defineStore('books', () => {
   async function create(book) {
     try {
       const data = await createBook(book)
-      books.value = [...books.value, data]
+      books.value.content.push(data)
     } catch (err) {
       throw err
     }
@@ -54,7 +50,7 @@ export const useBookStore = defineStore('books', () => {
     try {
       await deleteBook(id)
       toast.success('Успешно удаленно')
-      books.value = books.value.filter(book => book._id !== id)
+      books.value.content = books.value.content.filter(book => book._id !== id)
     } catch (err) {
       throw err
     }
@@ -64,7 +60,8 @@ export const useBookStore = defineStore('books', () => {
     try {
       const newBook = await updateBookById(id, book)
       const idx = books.value.content.findIndex(item => item._id === id)
-      books.value[idx] = newBook
+      delete books.value.content[idx]
+      books.value.content = [...books.value.content.filter(item => item), newBook]
       toast.success('Успешно обновлён')
     } catch (err) {
       throw err

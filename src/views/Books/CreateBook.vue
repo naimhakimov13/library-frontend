@@ -4,7 +4,7 @@ import {useRoute, useRouter} from "vue-router"
 
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseSelect from '@/components/ui/BaseSelect.vue'
-import {getBookById, uploadFile} from "@/services/http.service"
+import {getBookById, removeFile, uploadFile} from "@/services/http.service"
 import {useCategoryStore} from "@/stores/categoryStore"
 import {useBookStore} from "@/stores/bookStore"
 
@@ -23,8 +23,8 @@ let formBook = reactive({
   release_year: null,
   count_page: null,
   category_id: null,
-  image: null,
-  pdf: null
+  image: {},
+  pdf: {}
 })
 const loading = ref(false)
 onMounted(async () => {
@@ -38,10 +38,14 @@ onMounted(async () => {
     formBook.quantity = data.quantity
     formBook.release_year = data.release_year
     formBook.count_page = data.count_page
-    formBook.category_id = data.category_id
+    formBook.category_id = data.category_id?._id
     formBook.image = data.image
     formBook.pdf = data.pdf
   }
+})
+
+watch(formBook, (value, oldValue, onCleanup) => {
+  console.log(value)
 })
 
 async function changePhoto(event, type) {
@@ -54,20 +58,26 @@ async function onSubmit() {
     if (route.params.id) {
       await bookStore.update(route.params.id, {
         ...formBook,
-        category_id: formBook.category_id?._id
+        category_id: formBook.category_id
       })
 
     } else {
       await bookStore.create({
         ...formBook,
-        category_id: formBook.category_id?._id
+        category_id: formBook.category_id
       })
     }
     loading.value = false
     await router.push('/books')
   } catch (e) {
+    loading.value = false
     throw e
   }
+}
+
+async function deleteFile(key, id) {
+  await removeFile(id)
+  formBook[key] = {}
 }
 </script>
 
@@ -120,11 +130,27 @@ async function onSubmit() {
           :options="categoryStore.categoryList"
           label="Категориый"/>
 
-      <base-input @change="changePhoto($event,'image')" label="Фото" type="file" />
+      <div class="form-control__file">
+        <base-input @change="changePhoto($event,'image')" label="Фото" type="file"/>
 
-      <base-input @change="changePhoto($event, 'pdf')" label="Pdf" type="file" />
+        <div v-if="formBook.image?.url" class="form-control__file-image">
+          <img :src="formBook.image?.url" alt="">
 
-      <base-button :loading="loading" type="submit">Сохранить</base-button>
+          <div class="form-control__file-close" @click="deleteFile('image' ,formBook.image.public_id)">&times;</div>
+        </div>
+      </div>
+
+      <div class="form-control__file">
+        <base-input @change="changePhoto($event, 'pdf')" label="Pdf" type="file"/>
+
+        <div v-if="formBook.pdf?.url" class="form-control__file-image">
+          <img :src="formBook.pdf?.url" alt="">
+
+          <div class="form-control__file-close" @click="deleteFile('pdf', formBook.pdf.public_id)">&times;</div>
+        </div>
+      </div>
+
+      <base-button :loading="loading" type="submit">{{ route.params?.id ? 'Обновить' : 'Сохранить' }}</base-button>
 
     </form>
   </div>

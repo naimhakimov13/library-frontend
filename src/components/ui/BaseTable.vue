@@ -54,6 +54,8 @@ defineEmits({
     </table>
 
     <Loader v-if="loading"/>
+
+    <p v-if="!rows.length && !loading" class="text-center">{{ $t('table.empty_table') }}</p>
   </div>
 </template>
 
