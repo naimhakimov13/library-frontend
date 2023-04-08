@@ -2,8 +2,8 @@ import axios from "axios";
 import {useToast} from "vue-toastification";
 
 export const HTTP = axios.create({
-  baseURL: 'https://library-backend.cyclic.app/api',
-  // baseURL: 'http://localhost:3000/api',
+  // baseURL: 'https://library-backend.cyclic.app/api',
+  baseURL: 'http://localhost:3000/api',
   headers: {
     "Content-Type": "application/json"
   }
