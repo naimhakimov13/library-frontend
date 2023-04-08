@@ -16,7 +16,7 @@ import tj from '@/assets/i18n/tj'
 
 const i18n = createI18n({
   globalInjection: true,
-  locale: localStorage.getItem('lang'),
+  locale: localStorage.getItem('lang') ?? 'ru',
   legacy: false,
   messages: {
     ru: ru,
