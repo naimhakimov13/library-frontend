@@ -8,7 +8,7 @@ const filterForm = reactive({email: '', name: '', barcode: ''})
 const loading = ref(false)
 const users = ref({content: []})
 const showButton = ref(true)
-const borrow = ref([])
+const borrow = ref(null)
 
 async function changeHandler() {
   loading.value = showButton.value = true
@@ -42,24 +42,34 @@ async function chooseUser(userId) {
 
     <h3>Фильтр</h3>
     <div class="flex gap-8 filter">
-      <BaseInput v-model="filterForm.email" placeholder="Поиск по email" @keyup.enter="changeHandler()" type="search"/>
-      <BaseInput v-model="filterForm.name" placeholder="Поиск по имя" @keyup.enter="changeHandler()" type="search"/>
-      <BaseInput v-model="filterForm.barcode" placeholder="Поиск по штрихкод" @keyup.enter="changeHandler()"
-                 type="search"/>
+      <BaseInput
+          v-model="filterForm.email"
+          placeholder="Поиск по email"
+          @keyup.enter="changeHandler()"
+          type="search"/>
+
+      <BaseInput
+          v-model="filterForm.name"
+          placeholder="Поиск по имя"
+          @keyup.enter="changeHandler()"
+          type="search"/>
+
+      <BaseInput
+          v-model="filterForm.barcode"
+          placeholder="Поиск по штрихкод"
+          @keyup.enter="changeHandler()"
+          type="search"/>
 
       <BaseButton :loading="loading" @click="changeHandler()">Переменить</BaseButton>
     </div>
 
-    <div>
-      <div class="user-list" v-if="!loading && users.content.length">
-        <div class="user-list-item" v-for="user in users.content" @click="chooseUser(user._id)">
-          {{ user.email }} &nbsp; ({{ user.name }})
-        </div>
+    <div class="user-list" v-if="!loading && users.content.length">
+      <div class="user-list-item" v-for="user in users.content" @click="chooseUser(user._id)">
+        {{ user.email }} &nbsp; ({{ user.name }})
       </div>
     </div>
 
-    <template v-if="borrow.length">
-      <h4>Cдавание книги</h4>
+    <template v-if="borrow?.length">
       <BaseTable
           :columns="columnsBook"
           :rows="borrow">
@@ -79,6 +89,8 @@ async function chooseUser(userId) {
 
 .user-list {
   border: 1px solid var(--gray-400);
+  max-width: 400px;
+  border-radius: 8px;
 
   &-item {
     padding: 10px;
@@ -88,7 +100,7 @@ async function chooseUser(userId) {
     cursor: pointer;
 
     &:hover {
-      background: var(--gray-300);
+      background: var(--gray-400);
     }
   }
 }

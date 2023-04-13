@@ -40,6 +40,7 @@ const props = defineProps({
   justify-content: center;
   font-size: 14px;
   line-height: 16px;
+  transition: .3s all ease-in-out;
 
   &:hover {
     opacity: .8;
@@ -57,8 +58,8 @@ const props = defineProps({
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-left: 10px;
 }
 
@@ -66,9 +67,9 @@ const props = defineProps({
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 3px solid #fff;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #fff;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;

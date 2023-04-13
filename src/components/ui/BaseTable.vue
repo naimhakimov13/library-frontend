@@ -31,7 +31,7 @@ defineEmits({
 
 <template>
   <div class="table">
-    <table v-if="rows.length">
+    <table>
       <tr>
         <th v-for="row of columns">{{ row }}</th>
         <template v-if="isShowIcon">
