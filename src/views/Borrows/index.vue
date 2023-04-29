@@ -1,18 +1,18 @@
 <script setup>
-import {computed, ref} from "vue";
+import {reactive, ref} from "vue";
 import {getBorrowByUserId, getUsers} from "@/services/http.service";
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseTable from "@/components/ui/BaseTable.vue";
 
+const filterForm = reactive({email: '', name: '', barcode: ''})
 const loading = ref(false)
 const users = ref({content: []})
 const showButton = ref(true)
-const borrow = ref([])
+const borrow = ref(null)
 
-async function changeHandler(event) {
-  const inputValue = event.target.value
+async function changeHandler() {
   loading.value = showButton.value = true
-  users.value = await getUsers({email: inputValue})
+  users.value = await getUsers(filterForm)
   borrow.value = []
   loading.value = false
 }
@@ -40,19 +40,36 @@ async function chooseUser(userId) {
   <div>
     <h1 class="page__title">{{ $t('menu.borrow') }}</h1>
 
-    <BaseInput placeholder="Поиск пользователя по email" @keyup.enter="changeHandler($event)" type="search"/>
+    <h3>Фильтр</h3>
+    <div class="flex gap-8 filter">
+      <BaseInput
+          v-model="filterForm.email"
+          placeholder="Поиск по email"
+          @keyup.enter="changeHandler()"
+          type="search"/>
 
-    <Loader v-if="loading"/>
+      <BaseInput
+          v-model="filterForm.name"
+          placeholder="Поиск по имя"
+          @keyup.enter="changeHandler()"
+          type="search"/>
 
-    <div>
-      <div class="user-list" v-if="!loading && users.content.length">
-        <div class="user-list-item" v-for="user in users.content" @click="chooseUser(user._id)">
-          {{ user.email }} &nbsp; ({{ user.name }})
-        </div>
+      <BaseInput
+          v-model="filterForm.barcode"
+          placeholder="Поиск по штрихкод"
+          @keyup.enter="changeHandler()"
+          type="search"/>
+
+      <BaseButton :loading="loading" @click="changeHandler()">Переменить</BaseButton>
+    </div>
+
+    <div class="user-list" v-if="!loading && users.content.length">
+      <div class="user-list-item" v-for="user in users.content" @click="chooseUser(user._id)">
+        {{ user.email }} &nbsp; ({{ user.name }})
       </div>
     </div>
 
-    <template v-if="borrow.length">
+    <template v-if="borrow?.length">
       <BaseTable
           :columns="columnsBook"
           :rows="borrow">
@@ -66,7 +83,15 @@ async function chooseUser(userId) {
   margin-bottom: 20px;
 }
 
-.user-list {  border: 1px solid var(--gray-400);
+.filter {
+  margin-top: 15px;
+}
+
+.user-list {
+  border: 1px solid var(--gray-400);
+  max-width: 400px;
+  border-radius: 8px;
+
   &-item {
     padding: 10px;
     display: flex;
@@ -75,7 +100,7 @@ async function chooseUser(userId) {
     cursor: pointer;
 
     &:hover {
-      background: var(--gray-300);
+      background: var(--gray-400);
     }
   }
 }

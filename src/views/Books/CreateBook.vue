@@ -1,13 +1,14 @@
 <script setup>
 import {onMounted, reactive, ref, watch} from "vue"
 import {useRoute, useRouter} from "vue-router"
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
 
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseSelect from '@/components/ui/BaseSelect.vue'
 import {getBookById, removeFile, uploadFile} from "@/services/http.service"
 import {useCategoryStore} from "@/stores/categoryStore"
 import {useBookStore} from "@/stores/bookStore"
-
 const route = useRoute()
 const router = useRouter()
 
@@ -134,7 +135,9 @@ async function deleteFile(key, id) {
         <base-input @change="changePhoto($event,'image')" label="Фото" type="file"/>
 
         <div v-if="formBook.image?.url" class="form-control__file-image">
-          <img :src="formBook.image?.url" alt="">
+          <a :href="formBook.image?.url" target="_blank">
+            <img :src="formBook.image?.url" alt="">
+          </a>
 
           <div class="form-control__file-close" @click="deleteFile('image' ,formBook.image.public_id)">&times;</div>
         </div>
@@ -144,7 +147,7 @@ async function deleteFile(key, id) {
         <base-input @change="changePhoto($event, 'pdf')" label="Pdf" type="file"/>
 
         <div v-if="formBook.pdf?.url" class="form-control__file-image">
-          <img :src="formBook.pdf?.url" alt="">
+          <a :href="formBook.pdf?.url" target="_blank"><img :src="formBook.pdf?.url" alt=""></a>
 
           <div class="form-control__file-close" @click="deleteFile('pdf', formBook.pdf.public_id)">&times;</div>
         </div>
